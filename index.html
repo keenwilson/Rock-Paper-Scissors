@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <style>
+    img {
+        max-width: 450px; 
+        height: auto;
+    }
+    body {
+        font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    }
+
+    .header {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .funfacts {
+        border: 1px solid darkgrey;
+        font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+        margin: 0 auto;
+        max-width: 450px; 
+        height: 5rem;
+        text-align: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
+    #game {
+        width: 450px;
+        margin: 0 auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border: 1px solid darkgrey;
+        font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+        height: 8rem;
+    }
+  </style>
+</head>
+
+<body>
+
+    <section class="header">
+        <img src="img-rock-paper-scissors.jpg" alt="rock, paper, scissors illustration" style=""/>
+        <h1>Press r, p, or s to start playing rock, paper, scissors</h1>
+        <p>-- "r" for rock, "p" for paper, and "s" for scissors --</p>
+    </section>
+    <div id="game">
+    
+    </div>
+    <section class="funfacts">
+    <div id ="funFactsDisplay">
+        <!-- Fun facts will display here -->
+    </div>
+    <button onclick="newFunFacts()">Random Fun Facts</button>
+    </section>
+
+    <script type="text/javascript">
+    
+    /* Rock, Paper, Scissors*/
+    var computerChoices = ["r", "p", "s"];
+ 
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+
+    document.onkeyup = function() {
+        var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+        console.log("User guess: " + userGuess);
+      
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        console.log("Computer guess: " + computerGuess);
+
+        alert("User guess: " + userGuess);
+        alert("Computer guess: " + computerGuess);
+
+        if (userGuess == "r" || userGuess == "p" || userGuess == "s") {
+            if (userGuess == "r") {
+                if (computerGuess == "s") {
+                    wins++;
+                    alert("Rock beats scissors. You win!");
+                } else if (computerGuess == "p") {
+                    losses++; 
+                    alert("Rock is defeated by paper. You lose.");
+                } else {
+                    ties++;
+                    alert("It's a tie."); 
+                }
+            }
+
+            if (userGuess == "p") {
+                if (computerGuess == "r") {
+                    wins++;
+                    alert("Paper beats rock. You win!");
+                } else if (computerGuess == "s") {
+                    losses++;
+                } else {
+                    ties++;
+                    alert("It's a tie.");
+                }
+            }
+
+            if (userGuess == "s") {
+                if (computerGuess == "p") {
+                    wins++;
+                    alert("Scissors beats paper. You win!");
+                } else if (computerGuess == "r") {
+                    losses++;
+                    alert("Scissors are defeated by rock. You lose. Try again!");      
+                } else {
+                    ties++;
+                    alert("It's a tie.");
+                }       
+            }
+        } else {
+            alert("Please choose r, p, or s");
+        }
+      
+      var html = 
+      "<p>wins: " + wins + "</p>" +
+      "<p>losses: " + losses + "</p>" +
+      "<p>ties: " + ties + "</p>";
+
+      document.querySelector('#game').innerHTML = html;
+      
+      
+      
+ 
+      
+
+    };
+    /* Random Fun Facts Generator*/
+    var funFacts = [
+        'Males have a tendency to throw rock on their first try.',
+        'Inexperienced RPS players will subconsciously deliver the item that won previously.',
+        'Paper is thrown least often (29.6% of the time), so use it as a surprise.',
+        'The earliest form of Rock, Paper, Scissors was seen in 18th century Japan, called Jan-ken-pon.',
+    ]
+    function newFunFacts() {
+        var randomNumber = Math.floor(Math.random()*(funFacts.length));
+        document.getElementById('funFactsDisplay').innerHTML = funFacts[randomNumber];
+    }
+          
+    
+  </script>
+
+</body>
+
+</html>
